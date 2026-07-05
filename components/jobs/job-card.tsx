@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Job } from "@/types/job";
+import { Button } from "../ui/button";
 
 interface JobCardProps {
   job: Job;
@@ -13,15 +14,29 @@ export default function JobCard({ job }: JobCardProps) {
       <CardContent className="space-y-4 p-6">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold">{job.title}</h2>
-
-          {job.remote && <Badge>Remote</Badge>}
         </div>
 
-        <p className="font-medium">{job.company}</p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Badge>{job.remote ? "Remote" : "On-site"}</Badge>
 
-        <p>{job.location}</p>
+          <Badge variant="secondary">{job.employment_type}</Badge>
 
-        <p className="font-semibold">{job.salary}</p>
+          <Badge variant="outline">{job.salary}</Badge>
+        </div>
+
+        <section className="mt-12">
+          <h4 className="mb-4 text-1xl font-semibold">Job Description</h4>
+
+          <p className="leading-8">{job.description}</p>
+
+          <h2 className="mb-4 text-1xl font-semibold">Requirements</h2>
+
+          <ul className="space-y-2">
+            {job.requirements.split(",").map((item: string) => (
+              <li key={item}>- {item.trim()}</li>
+            ))}
+          </ul>
+        </section>
 
         <Link
           href={`/jobs/${job.id}`}
@@ -29,6 +44,9 @@ export default function JobCard({ job }: JobCardProps) {
         >
           View Job →
         </Link>
+        <Button className="mt-12" size="lg">
+          Apply Now
+        </Button>
       </CardContent>
     </Card>
   );
