@@ -28,7 +28,7 @@ export default function JobCard({ job }: any) {
 
         <Link
           href={`/jobs/${job.id}`}
-          className="text-blue-600 hover:underline"
+          className="text-blue-600 hover:underline hover:-translate-y-1 hover:shadow-xl transition-all duration-200"
         >
           View Job →
         </Link>
