@@ -1,5 +1,5 @@
 import Container from "@/components/ui/container";
-import JobForm from "./job-form";
+import JobForm from "../job-form";
 
 export default function NewJobPage() {
   return (

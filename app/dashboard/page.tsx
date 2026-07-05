@@ -14,7 +14,7 @@ export default async function DashboardPage() {
           <h1 className="text-4xl font-bold">Employer Dashboard</h1>
         </div>
         <Button>
-          <Link href="/dashboard/create-job">+ New Job</Link>
+          <Link href="/dashboard/new">+ New Job</Link>
         </Button>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <StatCard title="Jobs Posted" value={jobs.length} />
