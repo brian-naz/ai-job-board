@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createJob } from "./actions";
+import { createJob } from "../../app/dashboard/actions";
 
 export default function JobForm() {
   return (
-    <form action={createJob} className="space-y-6">
+    <form id="newJob" action={createJob} className="space-y-6">
       <Input name="title" placeholder="Job Title" />
 
       <Input name="company" placeholder="Company" />
@@ -23,7 +23,7 @@ export default function JobForm() {
         placeholder="Requirements (comma separated)"
       />
 
-      <Button className="w-full">Create Job</Button>
+      <Button type="submit" form="newJob">Create Job</Button>
     </form>
   );
 }
