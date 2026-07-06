@@ -1,5 +1,7 @@
 import { getJob } from "@/lib/job";
 import { notFound } from "next/navigation";
+import { requireEmployer } from "@/lib/auth";
+import ApplyButton from "@/components/jobs/apply-button";
 
 interface JobPageProps {
   params: Promise<{
@@ -8,6 +10,7 @@ interface JobPageProps {
 }
 
 export default async function JobPage({ params }: JobPageProps) {
+  await requireEmployer();
   const { id } = await params;
 
   const job = await getJob(id);
@@ -22,6 +25,7 @@ export default async function JobPage({ params }: JobPageProps) {
         <h1 className="text-5xl font-bold">{job.title}</h1>
 
         <p className="text-2xl text-muted-foreground">{job.company}</p>
+        <ApplyButton id={job.id} />
       </div>
     </main>
   );

@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 
 export default function RegisterForm() {
+  const supabase = createClient();
   const [loading, setLoading] = useState(false);
 
   async function register(e: React.FormEvent<HTMLFormElement>) {

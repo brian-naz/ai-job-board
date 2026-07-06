@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { createClient } from "./supabase/server";
 
 interface GetJobsOptions {
   search?: string;
@@ -34,4 +35,20 @@ export async function getJobs(options: GetJobsOptions = {}) {
   if (error) throw error;
 
   return data ?? [];
+}
+
+export async function getJob(id: string) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("jobs")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
 }
