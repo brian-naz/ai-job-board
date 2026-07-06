@@ -1,36 +1,332 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Job Board
 
-## Getting Started
+A full-stack AI-assisted Job Board built with Next.js, React, TypeScript, Supabase, and Tailwind CSS.
 
-First, run the development server:
+The platform allows employers to create and manage job postings while candidates can browse and apply for available positions through a secure authentication system.
+
+---
+
+## Features
+
+### Authentication
+
+- User registration
+- Email verification
+- Secure login/logout
+- Supabase Authentication
+- Role-based access (Employer & Candidate)
+
+### Employer Features
+
+- Employer Dashboard
+- Create job postings
+- Edit job postings
+- Delete job postings
+- View all posted jobs
+- Dashboard statistics
+
+### Candidate Features
+
+- Browse all jobs
+- Search jobs
+- Filter remote/on-site jobs
+- Sort jobs
+- View job details
+- Apply for jobs
+- Duplicate application prevention
+
+### Security
+
+- Supabase Row Level Security (RLS)
+- Protected dashboard routes
+- Employer-only dashboard access
+- Candidate-only job applications
+- Secure Server Actions
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Base UI
+
+### Backend
+
+- Supabase
+- PostgreSQL
+- Row Level Security
+- Server Actions
+
+### Deployment
+
+- Vercel
+
+### CI/CD
+
+- GitHub Actions
+
+---
+
+## Project Structure
+
+```
+app/
+├── auth/
+├── dashboard/
+├── jobs/
+├── api/
+
+components/
+├── auth/
+├── dashboard/
+├── jobs/
+├── ui/
+
+lib/
+├── auth.ts
+├── jobs.ts
+├── supabase/
+```
+
+---
+
+## Database Schema
+
+### Profiles
+
+| Column    | Type |
+| --------- | ---- |
+| id        | UUID |
+| full_name | Text |
+| role      | Text |
+
+---
+
+### Jobs
+
+| Column          | Type    |
+| --------------- | ------- |
+| id              | UUID    |
+| title           | Text    |
+| company         | Text    |
+| location        | Text    |
+| salary          | Text    |
+| description     | Text    |
+| requirements    | Text    |
+| employment_type | Text    |
+| remote          | Boolean |
+
+---
+
+### Applications
+
+| Column       | Type      |
+| ------------ | --------- |
+| id           | UUID      |
+| user_id      | UUID      |
+| job_id       | UUID      |
+| cover_letter | Text      |
+| status       | Text      |
+| created_at   | Timestamp |
+
+---
+
+## Authentication Flow
+
+```
+Register
+
+↓
+
+Verify Email
+
+↓
+
+Login
+
+↓
+
+Role Lookup
+
+↓
+
+Employer
+      ↓
+ Dashboard
+
+Candidate
+      ↓
+ Browse & Apply
+```
+
+---
+
+## Application Flow
+
+```
+Employer
+
+↓
+
+Create Job
+
+↓
+
+Candidate
+
+↓
+
+Browse Jobs
+
+↓
+
+View Details
+
+↓
+
+Apply
+
+↓
+
+Application Saved
+
+↓
+
+Employer Reviews Applicants
+```
+
+---
+
+## Search & Filtering
+
+The job listing page supports:
+
+- Keyword search
+- Remote / On-site filtering
+- Salary sorting
+- Dynamic URL parameters
+
+---
+
+## Security
+
+The application implements several security best practices:
+
+- Protected server routes
+- Supabase Authentication
+- Row Level Security Policies
+- Server-side validation
+- Role-based authorization
+- Duplicate application prevention
+
+---
+
+## Running Locally
+
+### Clone
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ai-job-board.git
+```
+
+### Install
+
+```bash
+npm install
+```
+
+### Create Environment Variables
+
+Create:
+
+```
+.env.local
+```
+
+Add:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+```
+
+### Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## CI/CD
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+GitHub Actions automatically:
 
-## Learn More
+- Installs dependencies
+- Runs ESLint
+- Builds the Next.js application
 
-To learn more about Next.js, take a look at the following resources:
+Successful pushes to the `main` branch are automatically deployed through Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+This project is deployed using **Vercel**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deployment is automatically triggered whenever changes are pushed to the `main` branch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## AI-Assisted Development
+
+This project was developed with assistance from AI tools to accelerate development, improve debugging, and streamline documentation.
+
+AI was used to assist with:
+
+- Project architecture
+- Component design
+- Debugging
+- TypeScript issues
+- Supabase integration
+- Server Actions
+- Authentication implementation
+- CI/CD configuration
+- Documentation
+
+All code was reviewed, integrated, and tested before being included in the final application.
+
+---
+
+## Future Improvements
+
+- Resume uploads
+- Applicant management dashboard
+- Saved jobs
+- Company profiles
+- Email notifications
+- Job categories
+- Pagination
+- Analytics dashboard
+- AI-powered resume matching
+- AI-generated job descriptions
+
+---
+
+## Author
+
+Brian Nazareth
+
+## Changelog:
+
+(July 6 2026)
+
+v1.0.0:
+
+- Initial Release

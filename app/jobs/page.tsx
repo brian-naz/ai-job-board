@@ -1,5 +1,5 @@
 import { getJobs } from "@/lib/jobs";
-import JobCard from "@/components/jobs/job-card";
+import JobCard from "@/components/dashboard/job-card";
 import SearchFilters from "@/components/jobs/search-filters";
 
 interface JobsPageProps {
