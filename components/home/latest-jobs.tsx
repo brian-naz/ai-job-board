@@ -1,5 +1,5 @@
 import { getJobs } from "@/lib/jobs";
-import JobCard from "../jobs/job-card";
+import JobCard from "@/components/dashboard/job-card";
 
 export default async function LatestJobs() {
   const jobs = await getJobs();
